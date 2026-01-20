@@ -1,5 +1,67 @@
-td, th {
-    border: solid black 1px;
+:root {
+    /* Globális css változó definiálása */
+    --honey: #edae49;
+    --red: #d1495b;
+    --aqua: #00798c;
+    --baltic: #30638e;
+    --darkblue: #003d5b;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--darkblue); /* Globális változó meghívása */
+    color: var(--honey);
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+a {
+    text-decoration: none;
+    padding: 10px;
+    border: var(--honey) solid 1px;
+    border-radius: 20px;
+    background-color: var(--aqua);
+    color: var(--honey);
+}
+
+a:hover {
+    background-color: var(--baltic);
+    cursor: pointer;
+}
+
+.likeAtag {
+    margin-top: 15px;
+    text-decoration: none;
+    padding: 10px;
+    border: var(--honey) solid 1px;
+    border-radius: 20px;
+    background-color: var(--aqua);
+    color: var(--honey);
+    cursor: pointer;
+}
+
+.likeAtag:hover {
+    background-color: var(--baltic);
+}
+
+.app-container {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+hr {
+    border: var(--honey) 1px solid;
+    margin-bottom: 25px;
+}
+
+td,
+th {
+    border: solid var(--honey) 1px;
     padding: 5px;
     padding-right: 10px;
 }
@@ -17,4 +79,15 @@ table {
     background-color: cornflowerblue;
     cursor: pointer;
     font-weight: bold;
+}
+
+/* Form controls */
+
+.form-group label,
+.form-group input {
+    display: block;
+}
+
+.form-group input {
+    margin-bottom: 20px;
 }

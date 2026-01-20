@@ -7,6 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Route::get('/journeys', [JourneyController::class, "index"])->name("journeys.index"); */
+/* Route::get('/journeys', [JourneyController::class, "sajatFunkcio"])->name("journeys.sajat"); */
 
 Route::resource('/journeys', JourneyController::class);

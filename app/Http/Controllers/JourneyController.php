@@ -13,7 +13,7 @@ class JourneyController extends Controller
      */
     public function index()
     {
-        $journeys = Journey::all(); 
+        $journeys = Journey::all(); //Eloquent modell - Lekéri az összes journeys összes sorát
         return view("journeys.index",["journeys" => $journeys]);
     }
 
@@ -22,7 +22,7 @@ class JourneyController extends Controller
      */
     public function create()
     {
-        //
+        return view("journeys.create");
     }
 
     /**
