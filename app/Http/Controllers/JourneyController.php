@@ -88,6 +88,17 @@ class JourneyController extends Controller
     public function destroy(Journey $journey)
     {
         $journey->delete();
-         return redirect()->route("journeys.index")->with("msg", "{$journey->name} was deleted successfuly");
+        return redirect()->route("journeys.index")->with("msg", "{$journey->name} was deleted successfuly");
+    }
+
+    public function showTrashed()
+    {
+        $journeys = Journey::onlyTrashed()->get(); //Eloquent modell - Lekéri az összes deleted_at oszlopban NEM null értékkel rendelkező journeys összes oszlopát
+        return view("journeys.index", ["journeys" => $journeys]);
+    }
+
+    public function restore(Journey $journey) {
+        $journey->restore(); //Lényegében törli a deleted_at mező értéket és null-ra állítja
+         return back()->with("msg", "{$journey->name} was restored successfuly");
     }
 }

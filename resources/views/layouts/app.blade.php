@@ -14,6 +14,7 @@
     <hr>
     <a href="{{ route('journeys.index') }}">List all available travel destinations</a>
     <a href="{{ route("journeys.create") }}">Add new destination</a>
+    <a href="{{ route("journeys.showTrashed") }}">Show deleted journey records</a>
 
     <div class="app-container">
         @yield('content')
