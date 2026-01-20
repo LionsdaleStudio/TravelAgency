@@ -19,9 +19,7 @@
                     <td><input type="checkbox" {{ $journey->visa ? 'checked' : '' }} disabled></td>
                     <td class="actions">
                         <a href="">Show</a>
-                        <form action="">
-                            <button class="likeAtag">Edit</button>
-                        </form>
+                        <a href="{{ route("journeys.edit", $journey) }}" class="likeAtag">Edit</a>
                         <form action="">
                             <button class="likeAtag">Delete</button>
                         </form>

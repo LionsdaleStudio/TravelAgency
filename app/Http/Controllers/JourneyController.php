@@ -65,7 +65,7 @@ class JourneyController extends Controller
      */
     public function edit(Journey $journey)
     {
-        //
+        return view("journeys.edit", ["journey" => $journey]);
     }
 
     /**
