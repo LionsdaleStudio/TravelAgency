@@ -57,7 +57,7 @@ class JourneyController extends Controller
      */
     public function show(Journey $journey)
     {
-        //
+        return view('journeys.show', ["journey" => $journey]);
     }
 
     /**
@@ -73,7 +73,13 @@ class JourneyController extends Controller
      */
     public function update(UpdateJourneyRequest $request, Journey $journey)
     {
-        //
+        $journey->update($request->all());
+        return redirect()->route("journeys.index")->with("msg", "{$journey->name} was updated successfuly");
+
+        //Direkt módosítás
+        /* $journey->name = $request->name;
+        ...
+        $journey->update(); */
     }
 
     /**
@@ -81,6 +87,7 @@ class JourneyController extends Controller
      */
     public function destroy(Journey $journey)
     {
-        //
+        $journey->delete();
+         return redirect()->route("journeys.index")->with("msg", "{$journey->name} was deleted successfuly");
     }
 }

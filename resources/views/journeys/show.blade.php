@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Here are our journey destinations: </p>
+    <h3>Here are the details of our {{ $journey->name }} destination.</h3>
 
-    @if (session()->has('msg'))
-        <p class="sessionMsg">{{ session()->get('msg') }}</p>
-    @endif
+    <p>{{$journey->description}}</p>
 
     <table>
         <thead>
@@ -16,15 +14,12 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            @foreach ($journeys as $journey)
                 <tr class="datarow">
                     <td>{{ $journey->name }}</td>
                     <td>{{ $journey->price }} HUF</td>
                     <td>{{ $journey->travel_time }} hours</td>
                     <td><input type="checkbox" {{ $journey->visa ? 'checked' : '' }} disabled></td>
                     <td class="actions">
-                        <a href="{{ route("journeys.show", $journey) }}">Show</a>
-
                         <a href="{{ route('journeys.edit', $journey) }}" class="likeAtag">Edit</a>
 
                         <form action="{{ route('journeys.destroy', $journey) }}" method="POST">
@@ -34,7 +29,6 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
         </tbody>
     </table>
 @endsection

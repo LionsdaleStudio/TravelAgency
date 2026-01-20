@@ -14,8 +14,9 @@
     @endif
     {{-- Errorok vége --}}
     <div class="form-container">
-        <form action="{{ route('journeys.store') }}" method="POST">
+        <form action="{{ route('journeys.update', $journey) }}" method="POST">
             @csrf {{-- Hidden változó _token --}}
+            @method("PUT") {{-- Hidden változó _method --}}
             <div class="form-group">
                 <label for="name">Name:</label>
                 @error('name')
@@ -47,7 +48,7 @@
                 <input type="checkbox" name="visa" id="visa" value="1" {{ old("visa") ? "checked" : "" }} {{ $journey->visa ? "checked" : "" }}>
             </div>
             <div style="text-align:center;">
-                <button class="likeAtag">Add new destination</button>
+                <button class="likeAtag">Edit destination</button>
             </div>
         </form>
     </div>
