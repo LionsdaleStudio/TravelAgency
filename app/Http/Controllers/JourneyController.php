@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
 use App\Models\Journey;
 use App\Http\Requests\StoreJourneyRequest;
 use App\Http\Requests\UpdateJourneyRequest;
+use App\Models\User;
 use DB;
 
 class JourneyController extends Controller
@@ -23,7 +25,8 @@ class JourneyController extends Controller
      */
     public function create()
     {
-        return view("journeys.create");
+        $agencies = Agency::all();
+        return view("journeys.create", ["agencies" => $agencies]);
     }
 
     /**
@@ -111,5 +114,14 @@ class JourneyController extends Controller
     {
         $journey->restore(); //Lényegében törli a deleted_at mező értéket és null-ra állítja
         return back()->with("msg", "{$journey->name} was restored successfuly");
+    }
+
+    public function userJourneys() {
+        if (auth()->check() == false) {
+            return redirect()->route("login");
+        }
+        else {
+            return view("journeys.userJourneys");
+        }
     }
 }

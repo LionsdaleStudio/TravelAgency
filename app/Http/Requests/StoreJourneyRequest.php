@@ -18,7 +18,7 @@ class StoreJourneyRequest extends FormRequest
 
         //Ha van kész policy
         if (auth()->check()) { //a user() funció null-t ad vissza, azon a can nem fut le
-            Auth::user()->can("create", Journey::class);
+            return Auth::user()->can("create", Journey::class);
         }
 
         return false;
@@ -37,7 +37,8 @@ class StoreJourneyRequest extends FormRequest
             "price" => "required|integer|min:0", //old school
             "travel_time" => ["required", "numeric", "min:0"],
             "visa" => ["boolean"],
-            "description" => ["string", "required"]
+            "description" => ["string", "required"],
+            "agency_id" => ["required", "between:1,3"]
         ];
     }
 

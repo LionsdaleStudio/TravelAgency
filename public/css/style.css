@@ -125,3 +125,7 @@ table {
     display: flex;
     justify-content: space-between;
 }
+
+.form-group-check {
+    margin-bottom: 25px;
+}

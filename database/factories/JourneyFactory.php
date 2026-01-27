@@ -21,7 +21,8 @@ class JourneyFactory extends Factory
             "price" => fake()->numberBetween(40000, 2500000),
             "travel_time" => fake()->randomFloat(2,1.00, 40.00),
             "visa" => fake()->boolean(),
-            "description" => fake()->sentences(3, true)
+            "description" => fake()->sentences(3, true),
+            "agency_id" => fake()->numberBetween(1,3)
         ];
     }
 }

@@ -28,7 +28,9 @@ class UpdateJourneyRequest extends FormRequest
             "price" => "required|integer|min:0", //old school
             "travel_time" => ["required", "numeric", "min:0"],
             "visa" => ["boolean"],
-            "description" => ["string", "required"]
+            "description" => ["string", "required"],
+            "agency_id" => ["required", "between:1,3"]
+
         ];
     }
 }

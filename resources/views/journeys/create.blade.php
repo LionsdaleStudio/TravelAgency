@@ -22,7 +22,7 @@
                     {{-- Error üzenet specifikus input --}}
                     <span>{{ $errors->first('name') }}</span> {{-- get("name") tömbként az összes névhez tartozó error-t hozná --}}
                 @enderror
-                <input type="text" name="name" id="name" value="{{ old("name") }}"
+                <input type="text" name="name" id="name" value="{{ old('name') }}"
                     @error('name') style="border: 2px solid red"
                 @enderror>
 
@@ -32,19 +32,27 @@
                 @error('price')
                     <span>{{ $errors->first('price') }}</span>
                 @enderror
-                <input type="number" id="price" name="price" value="{{ old("price") }}">
+                <input type="number" id="price" name="price" value="{{ old('price') }}">
             </div>
             <div class="form-group">
                 <label for="travel_time">Travel time (hours):</label>
-                <input type="number" name="travel_time" id="travel_time" step=".01" value="{{ old("travel_time") }}">
+                <input type="number" name="travel_time" id="travel_time" step=".01" value="{{ old('travel_time') }}">
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <input type="text" name="description" id="description" value="{{ old("description") }}">
+                <input type="text" name="description" id="description" value="{{ old('description') }}">
             </div>
             <div class="form-group-check">
                 <label for="visa">Visa:</label>
-                <input type="checkbox" name="visa" id="visa" value="1" {{ old("visa") ? "checked" : "" }}>
+                <input type="checkbox" name="visa" id="visa" value="1" {{ old('visa') ? 'checked' : '' }}>
+            </div>
+            <div class="form-group">
+                <select name="agency_id" required>
+                    <option value="" disabled selected>Choose an agency...</option>
+                    @foreach ($agencies as $agency)
+                        <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div style="text-align:center;">
                 <button class="likeAtag">Add new destination</button>

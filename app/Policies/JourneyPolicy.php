@@ -29,7 +29,7 @@ class JourneyPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role == "ContentCreator") {
+        if ($user->role == "admin") {
             return true;
         }
         

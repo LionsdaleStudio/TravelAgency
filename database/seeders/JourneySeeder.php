@@ -19,7 +19,8 @@ class JourneySeeder extends Seeder
             "price" => 700000,
             "travel_time" => 18.5,
             "visa" => true,
-            "description" => "A hely, ahova eljutni nagyon drága és sokáig tart, de ott lenni nagyon olcsó. Ui.: A majmok lopnak..."
+            "description" => "A hely, ahova eljutni nagyon drága és sokáig tart, de ott lenni nagyon olcsó. Ui.: A majmok lopnak...",
+            "agency_id" => 1
         ]);
 
         Journey::factory(10)->create();

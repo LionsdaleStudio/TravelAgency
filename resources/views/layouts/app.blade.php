@@ -44,12 +44,18 @@
     <hr>
 
     <a href="{{ route('journeys.index') }}">List all available travel destinations</a>
-    <a href="{{ route('journeys.create') }}">Add new destination</a>
+
+    @can('create', App\Models\Journey::class)
+        <a href="{{ route('journeys.create') }}">Add new destination</a>
+    @endcan
 
     @can('showTrashed', App\Models\Journey::class)
         <a href="{{ route('journeys.showTrashed') }}">Show deleted journey records</a>
     @endcan
 
+    @auth
+        <a href="{{ route("journeys.userJourneys") }}">My Journeys</a>
+    @endauth
 
 
     <div class="app-container">

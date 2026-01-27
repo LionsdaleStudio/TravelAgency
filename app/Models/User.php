@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /* Relations */
+    public function journeys() {
+        return $this->belongsToMany(Journey::class);
+    }
 }

@@ -13,6 +13,7 @@
             <th>Price</th>
             <th>Travel Time</th>
             <th>Visa needed</th>
+            <th>Agency</th>
             <th>Actions</th>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>{{ $journey->price }} HUF</td>
                     <td>{{ $journey->travel_time }} hours</td>
                     <td><input type="checkbox" {{ $journey->visa ? 'checked' : '' }} disabled></td>
+                    <td>{{ $journey->agency->name }}</td>
                     <td class="actions">
                         @if (isset($journey->deleted_at))
                             <form action="{{ route('journeys.restore', $journey) }}" method="POST">
