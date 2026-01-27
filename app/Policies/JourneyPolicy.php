@@ -29,6 +29,10 @@ class JourneyPolicy
      */
     public function create(User $user): bool
     {
+        if ($user->role == "ContentCreator") {
+            return true;
+        }
+        
         return false;
     }
 
@@ -53,7 +57,21 @@ class JourneyPolicy
      */
     public function restore(User $user, Journey $journey): bool
     {
+        /* Saját engedélyezés (pl.: saját komment vagy saját profil) */
+        //Amenniyben a journey user_id ugyanaz, mint a user-id, engedve van a restore parancs
+        //return $user->id === $journey->user_id;
         return false;
+
+    }
+
+    public function showTrashed(User $user)
+    {
+        //Általános engedélyezés (jelenleg a before miatt ez felesleges ide)
+        if ($user->role == "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -62,5 +80,14 @@ class JourneyPolicy
     public function forceDelete(User $user, Journey $journey): bool
     {
         return false;
+    }
+
+    public function before(User $user)
+    {
+        if ($user->role == "admin") {
+            return true;
+        } else {
+            return null; //Ha nem adok vissza mást, csak null értéket, akkor fog a többi szabály vizsgálódni
+        }
     }
 }

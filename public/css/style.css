@@ -120,3 +120,8 @@ table {
 .form-group input {
     margin-bottom: 20px;
 }
+
+.titleBar {
+    display: flex;
+    justify-content: space-between;
+}

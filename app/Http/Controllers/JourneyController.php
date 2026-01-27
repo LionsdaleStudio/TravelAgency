@@ -87,18 +87,29 @@ class JourneyController extends Controller
      */
     public function destroy(Journey $journey)
     {
-        $journey->delete();
+        $journey->delete(); //A modell osztálynak meg kell mondani, hogy használja a SoftDeletes osztályt, különben teljes törlés lesz, a softDelete helyett.
         return redirect()->route("journeys.index")->with("msg", "{$journey->name} was deleted successfuly");
     }
 
     public function showTrashed()
     {
+        //Átirányítás, ha nincs bejelentkezve
+        if (auth()->check() == false) {
+            return redirect()->route('login');
+        }
+
+        /* Amennziben a bejelentkezett user nem tud valamit, error kód */
+        if (auth()->user()->cannot("showTrashed", Journey::class)) {
+            abort(403);
+        }
+
         $journeys = Journey::onlyTrashed()->get(); //Eloquent modell - Lekéri az összes deleted_at oszlopban NEM null értékkel rendelkező journeys összes oszlopát
         return view("journeys.index", ["journeys" => $journeys]);
     }
 
-    public function restore(Journey $journey) {
+    public function restore(Journey $journey)
+    {
         $journey->restore(); //Lényegében törli a deleted_at mező értéket és null-ra állítja
-         return back()->with("msg", "{$journey->name} was restored successfuly");
+        return back()->with("msg", "{$journey->name} was restored successfuly");
     }
 }

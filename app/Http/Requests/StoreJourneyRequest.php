@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Journey;
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJourneyRequest extends FormRequest
@@ -11,8 +13,15 @@ class StoreJourneyRequest extends FormRequest
      */
     public function authorize(): bool //Ki mit csinálhat tárolás ügyében
     {
-        return true; //Fejlesztési célzattal nem használunk engedélyezést, ezért true
+        //Fejlesztési célzattal nem használunk engedélyezést, ezért return true
         //Mindenkinek lehet a store funkciót futtatni
+
+        //Ha van kész policy
+        if (auth()->check()) { //a user() funció null-t ad vissza, azon a can nem fut le
+            Auth::user()->can("create", Journey::class);
+        }
+
+        return false;
     }
 
     /**
@@ -20,7 +29,7 @@ class StoreJourneyRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array 
+    public function rules(): array
     {   //Ha az input mezők megfelelnek a validációnak, megyünk a store() funkcióra
         //Ha nem felelnek meg, akkor kigyűjti az errorokat egy $errors tömbbe és visszaküldi a frontend create pagere.
         return [
@@ -32,7 +41,8 @@ class StoreJourneyRequest extends FormRequest
         ];
     }
 
-    public function messages() { /* A különböző error üzenetek személyre szabása */
+    public function messages()
+    { /* A különböző error üzenetek személyre szabása */
         return [
             "name.required" => "A név mező kitöltése kötelező"
         ];
